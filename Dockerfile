@@ -5,4 +5,4 @@ RUN apt update
 RUN apt install -y python3-pip
 RUN pip3 install numpy
 RUN pip3 install pandas
-RUN apt install vim
+RUN apt install -y vim
