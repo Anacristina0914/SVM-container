@@ -6,4 +6,4 @@ RUN apt update
 #RUN pip3 install numpy
 #RUN pip3 install pandas
 RUN apt install -y vim
-CMD [ "/bin/bash", "-c", "svm-train -t 2 -c 1.5 -g 0.25 /home/svm_data/SVMTrain.txt /home/svm_data/SVMModel.txt" ]
+CMD [ "/bin/bash", "-c", "time svm-train -t 2 -c 1.5 -g 0.25 /home/svm_data/SVMTrain.txt /home/svm_data/SVMModel.txt" ]
