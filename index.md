@@ -1,4 +1,7 @@
-## Welcome to GitHub Pages
+## Welcome to the final presentation of BDP1
+<p align="center">
+  <img src="https://i1.wp.com/www.associazionegeart.com/wp-content/uploads/2017/10/unibo-logo-big.png?ssl=1" width="300">
+</p>
 
 You can use the [editor on GitHub](https://github.com/Anacristina0914/SVM-container/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
