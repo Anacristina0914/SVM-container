@@ -3,6 +3,8 @@
   <head>
   <title>Welcome to the final presentation of BDP1</title>
   </head>
+</p>
+  <p align="center">
   <img src="https://i1.wp.com/www.associazionegeart.com/wp-content/uploads/2017/10/unibo-logo-big.png?ssl=1" width="300">
 </p>
   </html>
