@@ -14,7 +14,7 @@ In the following steps I will describe the creation of a small computing infrast
 
 ## 1.   Configuring the AWS instances
 <p align="justify">
-In total, 4 virtual machines (instances) were configured using Amazon Web Services Cloud Computing Services (https://aws.amazon.com/). The four instances corresponding to the 3 worker nodes and the master (also worker node) were of the type t2.medium (2 vCPUs, 4GB of RAM) and were configured in the same time zone to allow communication via private IP addresses, us-east-1b was chosen for being one of the cheepest regions provided by AWS. Furthermore, a shared security group was configure to allow all outbound communications and all TCP, all UDP and ICMP inbound from within the same security group and my personal computer (since some of the data was transfered from my personal computer directly to the virtual machines.
+In total, 4 virtual machines (instances) were configured using Amazon Web Services Cloud Computing (https://aws.amazon.com/). The four instances corresponding to the 3 worker nodes and the master (also functioning as a worker node) were of the type t2.medium (2 vCPUs, 4GB of RAM) and were configured in the same time zone to allow communication via private IP addresses: us-east-1b was chosen for being one of the cheepest regions provided by AWS. Furthermore, a shared security group was configured to allow all outbound communications and all TCP, all UDP and ICMP inbound from within the same security group and my personal computer. This was necesary in order to transfer the files used for training and testing from my personal computer to the virtual machines via SCP protocol. Since some of the files transfered were heavy, the md5 checksum string of several files transfered was obtained before and after the transfer and compared. 
   
 <p align="center">
   <img src="https://imagesfinalproject.s3.amazonaws.com/InboudSecurityRules.png" width="600">
@@ -23,7 +23,9 @@ In total, 4 virtual machines (instances) were configured using Amazon Web Servic
 ```markdown
 Syntax highlighted code block
 
-# Header 1
+## Creating a volume and configuring a DNS and NAS
+
+
 ## Header 2
 ### Header 3
 
