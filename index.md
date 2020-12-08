@@ -31,7 +31,7 @@ When the instances were created, each of them consisted of a 10Gb SSD memory tha
 In order to make the master node easily identifiable, the prompt was configured by adding the <b>1.</b> line at the end of the bashrc configuration file and then typing the <b>2.</b> command on the console:
 </p>
 
-`PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "`    
+`PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"`    
 `source .bashrc`
 
 <p align="justify">
