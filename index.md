@@ -9,12 +9,12 @@ In the following steps I will describe the creation of a small computing infrast
 </p>
 
 <p align="center">
-  <img src="https://cdn.mos.cms.futurecdn.net/u27XxjDb49PgyDaHXMcd2i.jpg" width="350">
+  <img src="https://cdn.mos.cms.futurecdn.net/u27XxjDb49PgyDaHXMcd2i.jpg" width="380">
 </p>
 
 ### 1.   Configuring the AWS instances
 <p align="justify">
-In total, 2 virtual machines (instances) with Red Hat Enterprise Linux (RHEL) 7.6 operating system were configured using Amazon Web Services Cloud Computing (https://aws.amazon.com/). The two instances corresponding to 1 worker node and a master node (also configured to function as a worker node) were of the type t2.medium (2 vCPUs, 4GB of RAM), and were configured in the same time zone to allow communication via private IP addresses: us-east-1b was chosen for being one of the cheepest regions provided by AWS. Furthermore, a shared security group was configured to allow all outbound communications, and TCP, UDP and ICMP inbound communication protocols from within the same security group and my personal computer. This was particulary important to allow communication between the nodes, for configuring the Network Attached Storage (NAS) and to transfer the files used for training and testing from my personal computer to the virtual machines via the SCP protocol.  
+In total, 3 virtual machines (instances) with Red Hat Enterprise Linux (RHEL) 7.6 operating system were configured using Amazon Web Services Cloud Computing (https://aws.amazon.com/). The three instances corresponding to 2 worker nodes and a master node (also configured to function as a worker node) were of the type t2.medium (2 vCPUs, 4GB of RAM), and were configured in the same time zone to allow communication via private IP addresses: us-east-1b was chosen for being one of the cheepest regions provided by AWS. Furthermore, a shared security group was configured to allow all outbound communications, and TCP, UDP and ICMP inbound communication protocols from within the same security group and my personal computer. This was particulary important to allow communication between the nodes, for configuring the Network Attached Storage (NAS), to test connectivity using ping requests, and to transfer the files used for training and testing from my personal computer to the virtual machines via the SCP protocol.  
 </p>
 
 <p align="center">
@@ -23,13 +23,43 @@ In total, 2 virtual machines (instances) with Red Hat Enterprise Linux (RHEL) 7.
 
 ### 2.   Creating a volume and configuring a DNS and NAS
 <p align="justify">
-When the instances were created, each of them contained a 10Gb SSD memory that included the operating system and software necessary to operate. Furthermore, a 100GB magnetic hard drive volume was created, mounted and configured as a Direct Attached Storage (DAS) attached to the master node. Diferently from the exercise performed in class, the new volume was created empty and a partition (xvdf1) containing a ext4 POSIX file system for linux was configured and mounted on a subdirectory of the home directory. The following line code was added to the /etc/fstab file in order to mount the partition containing the ext4 fs into our home directory subdirectory:
+When the instances were created, each of them consisted of a 10Gb SSD memory that included the operating system and software necessary to operate. Furthermore, a 100GB magnetic hard drive volume was created, mounted and configured as a Direct Attached Storage (DAS) attached to the master node. Diferently from the exercise performed in class, the new volume was created empty and a partition (xvdf1) containing a ext4 POSIX file system for linux was configured and mounted on a subdirectory of the home directory. 
 </p>
 
+#### Master node
+<p align="justify">
+In order to make the master node easily identifiable, the prompt was configured by adding the **1.** line at the end of the bashrc configuration file and then typing the **2.** command on the console:
+</p>
+
+`1. PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "`\
+`2 . source .bashrc`
+
+<p align="justify">
+A new volume of the type magnetic (standard) was created in AWS by following: volumes > create volume. The configuration is shown in the image below:
+</p>
+
+<p align="center">
+  <img src="https://imagesfinalproject.s3.amazonaws.com/Volume+creation.png" width="600">
+</p>
+
+<p align="justify">
+Once the volume was created it was attached to the instance by choosing the option actions > attach volume and selecting the instance (in this case our master node) to which we want to attach the volume created. We need to perform this step prior to mounting the volume. 
+
+<p align="justify">
+The following line code was added to the /etc/fstab file in order to mount the partition containing the ext4 file system (fs) into our home directory subdirectory "data_svm":
+</p>
+  
 `/dev/xvdf1     /home/ec2-user/data_svm  ext4 defaults 0 0`
 
+<p align="justify">
+After the volume was mounted into the 'data_svm' directory, a NFS server (nfs-utils) was installed into the master node in order to create the Network Attached Storage (NAS). The NFS server was configured and activated. The /etc/exports file was modified to indicate which directory was to be shared and to which IP addresses in the following way:
+</p>
 
-In order to create the Network Attached Storage (NAS), a NFS server and client (nfs-utils) was installed in the master node containing the DAS, and the worker node respectively. 
+`/home/ec2-user/data_svm 172.31.0.0/16(rw,sync,no_wdelay)`
+
+<p align="justify">
+In this way the "data_svm" folder which would contain the data necessary to run our scientific application would be shared among all of our working nodes. When configuring the /etc/exports file we need to make sure that all the IP's of the machines with which the volume will be shared are listed, otherwise the volume won't be shared. This becomes a problem when we want to add more nodes. This is why instead of adding single IP addresses we added a single line to indicate the NFS server to share the volume with all the instances in the sub network domain 172.31, the /16 indicates that we are using a subnetwork mask and not a specific IP address. 
+</p>
 
 
 **Since some of the files transfered were heavy, the md5 checksum string of several files was obtained and compared before and after the transfer to ensure data integrity.**
@@ -46,14 +76,13 @@ In order to create the Network Attached Storage (NAS), a NFS server and client (
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Anacristina0914/SVM-container/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+<p align="center">
+  
+# Thank you
+<img src='https://media1.giphy.com/media/3WY8qMF9l3ldK/giphy.gif'  height="200" width="200">
+</p>
