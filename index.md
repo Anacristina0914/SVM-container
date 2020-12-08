@@ -47,7 +47,7 @@ In order to make the master node easily identifiable, the prompt was configured 
 2. `source .bashrc`
 
 <p align="justify">
-The following line of code was added to the /etc/fstab file in order to mount the partition containing the ext4 file system (fs) into our home directory subdirectory "data_svm", and then we used <i><b>mound -a</i></b> to mount all the partitions contained in the /etc/fstab file:
+The following line of code was added to the /etc/fstab file in order to mount the partition containing the ext4 file system (fs) into our home directory subdirectory "data_svm", and then we used <i><b>mount -a</b></i> to mount all the partitions contained in the /etc/fstab file:
 </p>
  
 ``/dev/xvdf1     /home/ec2-user/data_svm  ext4 defaults 0 0``
