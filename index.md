@@ -31,8 +31,8 @@ When the instances were created, each of them consisted of a 10Gb SSD memory tha
 In order to make the master node easily identifiable, the prompt was configured by adding the <b>1.</b> line at the end of the bashrc configuration file and then typing the <b>2.</b> command on the console:
 </p>
 
-<font size="2">`1. PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "`\
-`2 . source .bashrc`</font>
+`1 PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "`\
+`2  source .bashrc`
 
 <p align="justify">
 A new volume of the type magnetic (standard) was created in AWS by following: volumes > create volume. The configuration is shown in the image below:
@@ -85,5 +85,5 @@ Having trouble with Pages? Check out our [documentation](https://docs.github.com
 <p align="center">
   
 # Thank you
-<img src='https://media1.giphy.com/media/3WY8qMF9l3ldK/giphy.gif'  height="200" width="200">
+<img src='https://media1.giphy.com/media/3WY8qMF9l3ldK/giphy.gif'  height="150" width="150">
 </p>
