@@ -44,6 +44,7 @@ A new volume of the type magnetic (standard) was created in AWS by following: vo
 
 <p align="justify">
 Once the volume was created it was attached to the instance by choosing the option actions > attach volume and selecting the instance (in this case our master node) to which we want to attach the volume created. We need to perform this step prior to mounting the volume. 
+</p>
 
 <p align="justify">
 The following line code was added to the /etc/fstab file in order to mount the partition containing the ext4 file system (fs) into our home directory subdirectory "data_svm":
