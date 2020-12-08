@@ -50,7 +50,7 @@ In order to make the master node easily identifiable, the prompt was configured 
 The following line of code was added to the /etc/fstab file in order to mount the partition containing the ext4 file system (fs) into our home directory subdirectory "data_svm", and then we used <i><b>mound -a</i></b> to mount all the partitions contained in the /etc/fstab file:
 </p>
  
-`/dev/xvdf1     /home/ec2-user/data_svm  ext4 defaults 0 0`
+``/dev/xvdf1     /home/ec2-user/data_svm  ext4 defaults 0 0``
 
 <p align="justify">
 After the volume was mounted into the 'data_svm' directory, a NFS server (nfs-utils) was installed into the master node in order to create the Network Attached Storage (NAS). The NFS server was configured and activated. The /etc/exports file was modified to indicate which directory was to be shared and to which IP addresses, and then the <i>exportfs -r</i> command was used to start sharing the data. The line added to the exports file is listed below.
@@ -64,7 +64,7 @@ In this way the "data_svm" folder which would contain the data necessary to run 
 
 <p align="justify">
 In order to create a computer cluster, HTCondor was installed in the master node. 
-
+</p>
 
 **Since some of the files transfered were heavy, the md5 checksum string of several files was obtained and compared before and after the transfer to ensure data integrity.**
 
@@ -87,6 +87,5 @@ Having trouble with Pages? Check out our [documentation](https://docs.github.com
 
 <p align="center">
   
-# Thank you
+# Thank you   
 <img src='https://media1.giphy.com/media/3WY8qMF9l3ldK/giphy.gif'  height="150" width="150">
-</p>
