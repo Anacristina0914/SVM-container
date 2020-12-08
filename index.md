@@ -43,14 +43,16 @@ Once the new volume had been created and attached to the master instance, the ne
 In order to make the master node easily identifiable, the prompt was configured by adding the <b>1.</b> line at the end of the bashrc configuration file and then typing the <b>2.</b> command on the console:
 </p>
 
-1. `PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "`    
-2. `source .bashrc`
+```
+1. PS1="\[\033[01;32m\]\u@Master\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "    
+2. source .bashrc
+```
 
 <p align="justify">
 The following line of code was added to the /etc/fstab file in order to mount the partition containing the ext4 file system (fs) into our home directory subdirectory "data_svm", and then we used <i><b>mount -a</b></i> to mount all the partitions contained in the /etc/fstab file:
 </p>
  
-``/dev/xvdf1     /home/ec2-user/data_svm  ext4 defaults 0 0``
+`/dev/xvdf1     /home/ec2-user/data_svm  ext4 defaults 0 0`
 
 <p align="justify">
 After the volume was mounted into the 'data_svm' directory, a NFS server (nfs-utils) was installed into the master node in order to create the Network Attached Storage (NAS). The NFS server was configured and activated. The /etc/exports file was modified to indicate which directory was to be shared and to which IP addresses, and then the <i>exportfs -r</i> command was used to start sharing the data. The line added to the exports file is listed below.
@@ -63,27 +65,44 @@ In this way the "data_svm" folder which would contain the data necessary to run 
 </p>
 
 <p align="justify">
-In order to create a computer cluster, HTCondor was installed in the master node. 
+Prior to the installation and configuration of the nodes, vim and wget were installed in all the instances using the following commands:
 </p>
+
+```
+sudo yum install vim
+sudo yum install wget
+```
+
+<p align="justify">
+In order to create a computer cluster, HTCondor was installed in the master node. The following commands were used:
+</p>
+
+```
+sudo su -
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum localinstall epel-release-latest-7.noarch.rpm
+```
+
+To install the dependencies.
+
+```
+wget http://research.cs.wisc.edu/htcondor/yum/repo.d/htcondor-stable-rhel7.repo
+cp htcondor-stable-rhel7.repo /etc/yum.repos.d/
+wget http://htcondor.org/yum/RPM-GPG-KEY-HTCondor
+rpm --import RPM-GPG-KEY-HTCondor
+yum install condor-all
+```
+
+An error popped up at the moment of installation, which was resolved by following these [steps](https://forums.docker.com/t/docker-ce-stable-x86-64-repo-not-available-https-error-404-not-found-https-download-docker-com-linux-centos-7server-x86-64-stable-repodata-repomd-xml/98965/6)
+
+The baseurl for docker-ce-stable was replaced by https://download.docker.com/linux/centos/7/$basearch/stable in the docker-ce.repo docker configuration file. 
+
 
 **Since some of the files transfered were heavy, the md5 checksum string of several files was obtained and compared before and after the transfer to ensure data integrity.**
 
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Having trouble with this page?[contact support](https://github.com/contact) and we’ll help you sort it out.
 
 <p align="center">
   
