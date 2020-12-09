@@ -107,4 +107,5 @@ Having trouble with this page?[contact support](https://github.com/contact) and 
 <p align="center">
   
 # Thank you
-<img src="https://media.giphy.com/media/hDwYu8UEcUone/giphy.gif" width="150" height="150" />
+
+<img src="https://media.giphy.com/media/hDwYu8UEcUone/giphy.gif" width="150" height="150" /> <img src="https://pbs.twimg.com/profile_images/1324795268362063876/smP2Uvkr_400x400.jpg" width="150" height="150" />
